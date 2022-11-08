@@ -5,15 +5,16 @@ const Home = () => {
     return (
         <div>
 
-            <div className=' banner text-white'>
+            <div className='banner text-white'>
 
-                <div className=' relative top-32 left-28'>
-                    <div className=''>
+                <div className='absolute top-32 left-28'>
+                    <div >
                         <h5 className=' text-xl font-bold '> PHOTOGRAFER GUIDE</h5>
-                        <h2 className=' text-5xl font-bold mt-3 py-3'>
+                        <h2 className=' text-5xl font-bold mt-2 py-3'>
                             Hire an amazing <br />
                             local photographer <br />
-                            anywhere in the world</h2>
+                            anywhere in the world
+                        </h2>
 
                         <p className=' text-lg mt-3'>Looking for professional photographers to work with? <br /> You came to the right place. On Fiverr, you can easily <br /> find top photographers for any job necessary</p>
                         <div className=' mt-3'>
