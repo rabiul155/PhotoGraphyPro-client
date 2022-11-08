@@ -2,12 +2,13 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/UserContext";
 
 
 const LogIn = () => {
 
+    const navigate = useNavigate();
     const { logIn, createUserGoogle } = useContext(AuthContext)
 
     const handleSubmit = (event) => {
@@ -22,6 +23,8 @@ const LogIn = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                navigate('/')
+
 
             })
             .catch(error => {
@@ -37,6 +40,7 @@ const LogIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                navigate('/')
                 toast.success('successfully logIn')
             })
             .catch(error => {
