@@ -1,9 +1,28 @@
 
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+import Main from './layout/Main';
 
 function App() {
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Main></Main>,
+      children: [
+        {
+
+        }
+      ]
+    }
+  ])
+
   return (
-    <div className="App">
+    <div>
+
+      <RouterProvider router={router}>
+
+      </RouterProvider>
 
     </div>
   );
