@@ -1,0 +1,64 @@
+
+import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+
+const LogIn = () => {
+
+
+    return (
+
+        <div className=' flex justify-center mt-5 mx-2'>
+            <div className="w-full max-w-sm">
+                <form className=" bg-slate-300  rounded p-6 mb-4">
+                    <h2 className=" text-3xl text-center font-bold mb-3">LogIn</h2>
+                    <hr />
+                    <div className="mb-4 mt-3">
+                        <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="email">
+                            Email
+                        </label>
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="email" placeholder="Email" name='email' required />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block text-left text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                            Password
+                        </label>
+
+                        <input className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="***********" name='password' required />
+
+                        <div class="flex items-center justify-between mt-2">
+                            <div class="flex items-center">
+                                <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                            </div>
+
+                            <div class="text-sm">
+                                <Link class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</Link>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <button className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            LogIn
+                        </button>
+
+                    </div>
+                    <div>
+                        <p className=" m-2 text-center">  Not a  member  <Link class="font-medium text-indigo-600 hover:text-indigo-500"> SignUp</Link></p>
+                    </div>
+                    <p className="text-center mt-2 italic">Create account with </p>
+                    <div className='flex justify-center text-2xl pt-3 gap-5'>
+                        <Link ><FaGoogle /></Link>
+                        <Link><FaFacebook /></Link>
+                        <Link><FaGithub /></Link>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    );
+};
+
+export default LogIn;
