@@ -1,18 +1,55 @@
 
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
+import toast from 'react-hot-toast';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/UserContext';
+
 
 
 const SignUp = () => {
 
+    const { createUser, createUserGoogle } = useContext(AuthContext);
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, email, password);
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                toast.success('successfully create an user')
+            })
+            .catch(error => {
+                console.error('create user error', error)
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            })
+
+    }
+
+    const handleGoogleLogIn = () => {
+        createUserGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                toast.success('successfully logIn')
+            })
+            .catch(error => {
+                console.log('google log in error', error)
+            })
+    }
 
 
     return (
 
         <div className=' flex justify-center mt-5 mx-2 '>
             <div className="w-full max-w-sm">
-                <form className=" bg-slate-300  rounded p-6 ">
+                <form onSubmit={handleSubmit} className=" bg-slate-300  rounded p-6 ">
                     <h2 className=" text-3xl text-center font-bold mb-3">SignUp</h2>
                     <hr />
                     <div className="mb-4 mt-3">
@@ -44,11 +81,11 @@ const SignUp = () => {
 
                     </div>
                     <div>
-                        <p className=" m-2 text-center">Have an account <Link to='/login' class="font-medium text-indigo-600 hover:text-indigo-500">LogIn</Link></p>
+                        <p className=" m-2 text-center">Have an account <Link to='/login' className="font-medium text-indigo-600 hover:text-indigo-500">LogIn</Link></p>
                     </div>
                     <p className="text-center mt-2 italic">Create account with </p>
                     <div className='flex justify-center text-2xl pt-3 gap-5'>
-                        <Link ><FaGoogle /></Link>
+                        <Link onClick={handleGoogleLogIn} ><FaGoogle /></Link>
                         <Link><FaFacebook /></Link>
                         <Link><FaGithub /></Link>
                     </div>

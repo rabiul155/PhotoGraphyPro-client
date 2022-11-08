@@ -1,16 +1,55 @@
 
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/UserContext";
 
 
 const LogIn = () => {
+
+    const { logIn, createUserGoogle } = useContext(AuthContext)
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+        logIn(email, password)
+            .then(result => {
+                toast.success('log in successfully')
+                const user = result.user;
+                console.log(user);
+                form.reset();
+
+            })
+            .catch(error => {
+                console.error('login error', error);
+                const errorMessage = error.message;
+                toast.error(errorMessage);
+            })
+    }
+
+
+    const handleGoogleLogIn = () => {
+        createUserGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                toast.success('successfully logIn')
+            })
+            .catch(error => {
+                console.log('google log in error', error)
+            })
+    }
 
 
     return (
 
         <div className=' flex justify-center mt-5 mx-2'>
             <div className="w-full max-w-sm">
-                <form className=" bg-slate-300  rounded p-6 mb-4">
+                <form onSubmit={handleSubmit} className=" bg-slate-300  rounded p-6 mb-4">
                     <h2 className=" text-3xl text-center font-bold mb-3">LogIn</h2>
                     <hr />
                     <div className="mb-4 mt-3">
@@ -26,14 +65,14 @@ const LogIn = () => {
 
                         <input className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="***********" name='password' required />
 
-                        <div class="flex items-center justify-between mt-2">
-                            <div class="flex items-center">
-                                <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                                <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                        <div className="flex items-center justify-between mt-2">
+                            <div className="flex items-center">
+                                <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">Remember me</label>
                             </div>
 
-                            <div class="text-sm">
-                                <Link class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</Link>
+                            <div className="text-sm">
+                                <Link className="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</Link>
                             </div>
                         </div>
 
@@ -46,11 +85,11 @@ const LogIn = () => {
 
                     </div>
                     <div>
-                        <p className=" m-2 text-center">  Not a  member  <Link class="font-medium text-indigo-600 hover:text-indigo-500"> SignUp</Link></p>
+                        <p className=" m-2 text-center">  Not a  member  <Link className="font-medium text-indigo-600 hover:text-indigo-500"> SignUp</Link></p>
                     </div>
                     <p className="text-center mt-2 italic">Create account with </p>
                     <div className='flex justify-center text-2xl pt-3 gap-5'>
-                        <Link ><FaGoogle /></Link>
+                        <Link onClick={handleGoogleLogIn} ><FaGoogle /></Link>
                         <Link><FaFacebook /></Link>
                         <Link><FaGithub /></Link>
                     </div>
