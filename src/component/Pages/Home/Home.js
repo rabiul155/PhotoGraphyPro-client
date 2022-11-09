@@ -55,17 +55,19 @@ const Home = () => {
 
             {/* .................services section .............. */}
 
-            <div className=' grid grid-cols-3'>
-                {
-                    services.map(service => <ServiceCard
-                        key={service._id}
-                        service={service}
-                    ></ServiceCard>)
-                }
+            <div className=' flex justify-center pt-6'>
+                <div className=' grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-5'>
+                    {
+                        services.map(service => <ServiceCard
+                            key={service._id}
+                            service={service}
+                        ></ServiceCard>)
+                    }
+                </div>
             </div>
 
             <div className=' flex justify-center m-4'>
-                <Link to='/services' className="btn btn-active btn-primary">Button</Link>
+                <Link to='/services' className="btn btn-active btn-warning px-12">SEE ALL</Link>
             </div>
 
             {/*............ my work section ............. */}

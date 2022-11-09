@@ -7,7 +7,7 @@ const Services = () => {
     console.log(services);
     return (
         <div className=' flex justify-center'>
-            <div className=' grid grid-cols-3 p-3 gap-3'>
+            <div className=' grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 p-3 gap-5'>
 
                 {
                     services.map(service => <ServiceCard
