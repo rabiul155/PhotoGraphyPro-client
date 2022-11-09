@@ -6,6 +6,7 @@ import Blogs from './component/Pages/Blogs/Blogs';
 import Home from './component/Pages/Home/Home';
 import LogIn from './component/Pages/LogIn/LogIn';
 import MyReview from './component/Pages/MyReview/MyReview';
+import Services from './component/Pages/Services/Services';
 import SignUp from './component/Pages/SignUp/SignUp';
 import Main from './layout/Main';
 
@@ -43,6 +44,11 @@ function App() {
         {
           path: '/signup',
           element: <SignUp></SignUp>
+        },
+        {
+          path: '/services',
+          loader: () => fetch('http://localhost:5000/services'),
+          element: <Services></Services>
         }
       ]
     }
