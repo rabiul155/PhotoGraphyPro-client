@@ -72,14 +72,15 @@ const AddService = () => {
                         </label>
                         <input name='rating' type="text" placeholder="Service Rating" className="input border border-sky-500 rounded w-full " required />
                     </div>
-                    <div>
-                        <label className="label">
-                            <span className="label-text text-lg font-semibold">Service Details</span>
 
-                        </label>
-                        <textarea name='about' className="textarea border border-sky-500 rounded w-full" placeholder="Details" required></textarea>
-                    </div>
 
+                </div>
+                <div className=' px-4'>
+                    <label className="label">
+                        <span className="label-text text-lg font-semibold">Service Details</span>
+
+                    </label>
+                    <textarea name='about' className="textarea border border-sky-500 rounded w-full" placeholder="Details" required></textarea>
                 </div>
                 <div className=' flex justify-center m-6'>
                     <button type='submit' className="btn btn-warning w-48 ">ADD Service </button>

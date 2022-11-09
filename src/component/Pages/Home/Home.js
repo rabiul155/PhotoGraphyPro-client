@@ -71,6 +71,8 @@ const Home = () => {
             </div>
 
             {/*............ my work section ............. */}
+
+
             <div className=' px-3 py-3 justify-center '>
 
                 <Swiper

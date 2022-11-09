@@ -1,0 +1,22 @@
+import React from 'react';
+import { SwiperSlide } from 'swiper/react';
+
+const ReviewCard = ({ reviewItem }) => {
+
+    const { picture, name, review, } = reviewItem
+    return (
+        <SwiperSlide>
+            <div className="card card-compact w-96 bg-base-100 shadow-xl py-4">
+                <figure><img src={picture} className=' w-32 rounded-full h-32' alt="Shoes" /></figure>
+                <div className="card-body">
+                    <h2 className="text-2xl font-bold text-center ">{name}</h2>
+                    <p className=' text-lg'>{review}</p>
+
+                </div>
+            </div>
+
+        </SwiperSlide>
+    );
+};
+
+export default ReviewCard;
