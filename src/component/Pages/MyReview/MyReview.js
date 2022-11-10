@@ -17,6 +17,26 @@ const MyReview = () => {
     }, [user?.email])
 
 
+    const handleDelete = (_id) => {
+        const agree = window.confirm('are you sure to delete this review')
+        if (agree) {
+            console.log(_id)
+            fetch(`http://localhost:5000/reviews/${_id}`, {
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    const remaining = review.filter(rev => rev._id !== _id)
+                    setReview(remaining);
+
+                    console.log(data)
+
+                })
+        }
+
+    }
+
     return (
         <div>
             {
@@ -26,6 +46,7 @@ const MyReview = () => {
                             review.map(rev => <ReviewDetails
                                 key={rev._id}
                                 review={rev}
+                                handleDelete={handleDelete}
                             ></ReviewDetails>)
                         }
                     </div>
