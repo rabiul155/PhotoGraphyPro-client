@@ -15,11 +15,13 @@ import img7 from '../../../images/swipe/img7.jpeg';
 import ServiceCard from '../Shared/ServiceCard/ServiceCard';
 import { Link } from 'react-router-dom';
 import pro from '../../../images/pro.jpg'
+import useTitle from '../../../hooks/useTitle';
 
 
 const Home = () => {
 
     const [services, setServices] = useState([])
+    useTitle('Home')
 
     useEffect(() => {
         fetch('http://localhost:5000/home-services')

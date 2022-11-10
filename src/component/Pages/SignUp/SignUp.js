@@ -4,11 +4,14 @@ import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/UserContext';
+import useTitle from '../../../hooks/useTitle';
 
 
 
 const SignUp = () => {
 
+
+    useTitle('signUp')
     const navigate = useNavigate();
 
     const { createUser, createUserGoogle, updateUser } = useContext(AuthContext);

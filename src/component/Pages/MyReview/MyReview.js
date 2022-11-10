@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/UserContext';
+import useTitle from '../../../hooks/useTitle';
 import ReviewDetails from './ReviewDetails/ReviewDetails';
 
 const MyReview = () => {
     const { user } = useContext(AuthContext);
     const [review, setReview] = useState([])
+    useTitle('MyReview')
 
 
     useEffect(() => {

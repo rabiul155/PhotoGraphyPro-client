@@ -4,9 +4,11 @@ import toast from "react-hot-toast";
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/UserContext";
+import useTitle from "../../../hooks/useTitle";
 
 
 const LogIn = () => {
+    useTitle('logIn')
 
     const location = useLocation()
     const from = location.state?.from?.pathname || '/';
