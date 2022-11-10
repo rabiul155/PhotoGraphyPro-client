@@ -13,7 +13,7 @@ const Update = () => {
 
 
 
-        fetch(`http://localhost:5000/reviews/${review?._id}`, {
+        fetch(`https://70-assignment-server.vercel.app/reviews/${review?._id}`, {
 
             method: 'PUT',
             headers: {
