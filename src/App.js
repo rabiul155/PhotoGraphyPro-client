@@ -10,6 +10,7 @@ import ServiceDetails from './component/Pages/ServiceDetails/ServiceDetails';
 import Services from './component/Pages/Services/Services';
 import SignUp from './component/Pages/SignUp/SignUp';
 import PrivateRoute from './component/PrivateRoute/PrivateRoute';
+import Update from './component/Update/Update';
 import Main from './layout/Main';
 
 function App() {
@@ -58,6 +59,11 @@ function App() {
             return fetch(`http://localhost:5000/services/${params.id}`)
           },
           element: <ServiceDetails></ServiceDetails>
+        },
+        {
+          path: 'myreview/update/:id',
+          loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`),
+          element: <Update></Update>
         }
       ]
     }

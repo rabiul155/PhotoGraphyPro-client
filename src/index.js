@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import UserContext from './context/UserContext';
 import { Toaster } from 'react-hot-toast';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +16,10 @@ root.render(
       position="top-center"
       reverseOrder={false}
     />
-    <App />
+    <PhotoProvider>
+      <App />
+    </PhotoProvider>
+
   </UserContext>
 
 );
