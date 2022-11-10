@@ -40,7 +40,7 @@ const AddService = () => {
 
     return (
 
-        <div>
+        <div className=' w-3/4 mx-auto'>
             <h2 className=' text-center text-4xl font-bold pt-5'>ADD  SERVICES</h2>
             <form onSubmit={handleSubmit} >
                 <div className=' grid grid-cols-1 sm:grid-cols-2 gap-4 p-4'>

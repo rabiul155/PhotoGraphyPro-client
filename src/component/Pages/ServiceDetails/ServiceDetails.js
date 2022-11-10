@@ -6,6 +6,8 @@ import { FreeMode } from "swiper";
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import ReviewCard from '../ReviewCard/ReviewCard';
+import { addToDB } from '../../fakeDB/fakeDB2';
+import toast from 'react-hot-toast';
 
 
 const ServiceDetails = () => {
@@ -20,19 +22,36 @@ const ServiceDetails = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-        const name = form.name.value;
+        const userName = form.name.value;
         const photo = form.photo.value;
         const email = form.email.value;
         const reviewText = form.review.value;
 
         const review = {
-            name: name,
+            name: userName,
             picture: photo,
             email: email,
             review_id: _id,
-            review: reviewText
+            review: reviewText,
+            service_name: name
         }
+
+
         console.log(review);
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                toast.success('review added')
+            })
+            .catch(error => console.error('add review data error', error))
 
     }
 
@@ -64,30 +83,18 @@ const ServiceDetails = () => {
             {/* review section  */}
 
             <div className=' px-3 py-3 justify-center '>
-
-                <div>
-                    <h2 className=' text-5xl font-bold text-center p-8'>Visitors review</h2>
-                    <Swiper
-                        freeMode={true}
-                        grabCursor={true}
-                        modules={[FreeMode]}
-                        className="mySwiper"
-                        spaceBetween={30}
-                        slidesPerView={4}
-
-                    >
+                <h2 className=' text-5xl font-bold text-center p-8'>Visitors review</h2>
+                <div className=' flex justify-center'>
 
 
-                        {
-                            reviews.map(review => <ReviewCard
-                                key={_id}
-                                reviewItem={review}
-                            ></ReviewCard>)
-                        }
+                    {
+                        reviews.map(review => <ReviewCard
+                            key={_id}
+                            reviewItem={review}
+                        ></ReviewCard>)
+                    }
 
 
-
-                    </Swiper>
                 </div>
 
             </div>
@@ -99,7 +106,7 @@ const ServiceDetails = () => {
             {
                 user?.uid || user?.email ?
 
-                    <div>
+                    <div className=' w-3/4 mx-auto'>
                         <h2 className=' text-center text-4xl font-bold pt-5 '>ADD A REVIEW FOR THIS SERVICE</h2>
                         <form onSubmit={handleSubmit} >
                             <div className=' grid grid-cols-1 sm:grid-cols-2 gap-4  p-4'>
@@ -129,7 +136,7 @@ const ServiceDetails = () => {
                                         <span className="label-text text-lg font-semibold">Service To Review</span>
 
                                     </label>
-                                    <input defaultValue={_id} name='service-id' type="text" placeholder="Service Rating" className="input border border-sky-500 rounded w-full " required />
+                                    <input defaultValue={name} name='service-id' type="text" placeholder="Service Rating" className="input border border-sky-500 rounded w-full " required />
                                 </div>
                             </div>
 
