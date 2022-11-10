@@ -7,7 +7,7 @@ const ServiceCard = ({ service }) => {
     const { _id, name, picture, rating, price, about } = service;
     return (
         <div>
-            <div className="card card-compact w-96 bg-base-100 shadow-xl">
+            <div className="card card-compact w-80 sm:mx-0 mx-auto sm:w-96 bg-base-100 shadow-xl">
                 <figure>
                     <PhotoView src={picture}>
                         <img src={picture} alt="Shoes" />

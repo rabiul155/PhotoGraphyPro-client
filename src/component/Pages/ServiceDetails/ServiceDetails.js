@@ -62,7 +62,7 @@ const ServiceDetails = () => {
 
         <div>
             <div className=' flex justify-center p-4'>
-                <div className="card card-compact w-1/2 bg-base-100 shadow-xl">
+                <div className="card card-compact md:w-1/2 bg-base-100 shadow-xl">
                     <figure><img className=' w-full' src={picture} alt="none" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{name}</h2>

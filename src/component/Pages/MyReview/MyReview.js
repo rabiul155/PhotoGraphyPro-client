@@ -56,8 +56,8 @@ const MyReview = () => {
                     </div>
                     :
                     <>
-                        <div className=' flex justify-center align-bottom'>
-                            <h2 className=' text-5xl font-bold '>You Do Not add Any Review Please Add A Review </h2>
+                        <div className=' flex justify-center align-middle '>
+                            <h2 className=' text-5xl font-bold h-7'>You Do Not add Any Review Please Add A Review </h2>
                         </div>
 
                     </>
