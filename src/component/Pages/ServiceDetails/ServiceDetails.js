@@ -1,12 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../context/UserContext';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode } from "swiper";
-import 'swiper/css';
-import 'swiper/css/free-mode';
 import ReviewCard from '../ReviewCard/ReviewCard';
-import { addToDB } from '../../fakeDB/fakeDB2';
 import toast from 'react-hot-toast';
 
 
@@ -18,6 +13,7 @@ const ServiceDetails = () => {
 
     const service = useLoaderData();
     const { _id, name, picture, rating, price, about } = service;
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -56,11 +52,10 @@ const ServiceDetails = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`http://localhost:5000/reviews?review_id=${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [_id])
-
 
 
     return (
@@ -84,7 +79,7 @@ const ServiceDetails = () => {
 
             <div className=' px-3 py-3 justify-center '>
                 <h2 className=' text-5xl font-bold text-center p-8'>Visitors review</h2>
-                <div className=' flex justify-center'>
+                <div className=' flex flex-wrap justify-center gap-4'>
 
 
                     {

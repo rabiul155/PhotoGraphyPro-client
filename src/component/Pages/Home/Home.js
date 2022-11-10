@@ -12,11 +12,9 @@ import img4 from '../../../images/swipe/img4.jpeg';
 import img5 from '../../../images/swipe/img5.webp';
 import img6 from '../../../images/swipe/img6.jpeg';
 import img7 from '../../../images/swipe/img7.jpeg';
-import img8 from '../../../images/swipe/img8.jpeg';
-import img9 from '../../../images/swipe/img9.webp';
-import img10 from '../../../images/swipe/img10.jpeg';
 import ServiceCard from '../Shared/ServiceCard/ServiceCard';
 import { Link } from 'react-router-dom';
+import pro from '../../../images/pro.jpg'
 
 
 const Home = () => {
@@ -73,7 +71,8 @@ const Home = () => {
             {/*............ my work section ............. */}
 
 
-            <div className=' px-3 py-3 justify-center '>
+            <div className=' px-3 py-5 justify-center '>
+                <h2 className=' text-4xl font-bold text-center p-6'>My work</h2>
 
                 <Swiper
                     freeMode={true}
@@ -85,32 +84,44 @@ const Home = () => {
 
                 >
                     <SwiperSlide>
-                        <Swipe data={{ image: img1 }}></Swipe>
+                        <Swipe data={{ image: img1, location: 'Alabama' }}></Swipe>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <Swipe data={{ image: img2 }}></Swipe>
+                        <Swipe data={{ image: img2, location: "Africa" }}></Swipe>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <Swipe data={{ image: img3 }}></Swipe>
+                        <Swipe data={{ image: img3, location: "Sahara" }}></Swipe>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <Swipe data={{ image: img4 }}></Swipe>
+                        <Swipe data={{ image: img4, location: "Desart " }}></Swipe>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <Swipe data={{ image: img5 }}></Swipe>
+                        <Swipe data={{ image: img5, location: "India" }}></Swipe>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <Swipe data={{ image: img6 }}></Swipe>
+                        <Swipe data={{ image: img6, location: "GreenLand" }}></Swipe>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <Swipe data={{ image: img7 }}></Swipe>
+                        <Swipe data={{ image: img7, location: "Peru" }}></Swipe>
                     </SwiperSlide>
-
-
-
-
                 </Swiper>
 
+            </div>
+
+            {/* about Me section  */}
+
+            <div className=' bg-stone-800'>
+                <div className=' flex justify-around w-3/4 text-white m-auto p-8'>
+                    <div className='w-1/2'>
+                        <h2 className=' text-4xl font-bold '> About Me </h2>
+                        <p className=' text-lg font-bold'>Photography is my hobby.
+                            I have join this profession before 5 years and this long time i capture more than thousent of pictule. I love nature so I used to take picture of nature. I try my best to get a perfect picture. Sometime I have to wait a lont time to take a perfect picture.I visited more thank 20 countries to take picture of nature. Different countiries had different nature. So I have to change my apporach to take perfect picture.When I get the perfect shoot then I edit the picture and send it to a journal. I have written many artile about photography which is effective for capture perfect picture.At last I would say I love my profession. </p>
+
+                    </div>
+                    <div className=''>
+                        <img className=' w-96 h-96 rounded-full' src={pro} alt="" />
+                    </div>
+                </div>
             </div>
 
 

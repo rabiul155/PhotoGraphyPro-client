@@ -2,11 +2,14 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/UserContext";
 
 
 const LogIn = () => {
+
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
 
     const navigate = useNavigate();
     const { logIn, createUserGoogle } = useContext(AuthContext)
@@ -23,7 +26,7 @@ const LogIn = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                navigate('/')
+                navigate(from, { replace: true });
 
 
             })

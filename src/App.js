@@ -9,6 +9,7 @@ import MyReview from './component/Pages/MyReview/MyReview';
 import ServiceDetails from './component/Pages/ServiceDetails/ServiceDetails';
 import Services from './component/Pages/Services/Services';
 import SignUp from './component/Pages/SignUp/SignUp';
+import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 import Main from './layout/Main';
 
 function App() {
@@ -24,12 +25,12 @@ function App() {
         },
         {
           path: '/myreview',
-          element: <MyReview></MyReview>
+          element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
 
         },
         {
           path: '/addservice',
-          element: <AddService></AddService>
+          element: <PrivateRoute><AddService></AddService></PrivateRoute>
 
         },
         {
@@ -54,7 +55,6 @@ function App() {
         {
           path: '/services/:id',
           loader: ({ params }) => {
-            console.log(params.id)
             return fetch(`http://localhost:5000/services/${params.id}`)
           },
           element: <ServiceDetails></ServiceDetails>
