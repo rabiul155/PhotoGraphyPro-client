@@ -50,19 +50,19 @@ function App() {
         },
         {
           path: '/services',
-          loader: () => fetch('https://70-assignment-server.vercel.app/services'),
+          loader: () => fetch('http://localhost:5000/services'),
           element: <Services></Services>
         },
         {
           path: '/services/:id',
           loader: ({ params }) => {
-            return fetch(`https://70-assignment-server.vercel.app/services/${params.id}`)
+            return fetch(`http://localhost:5000/services/${params.id}`)
           },
           element: <ServiceDetails></ServiceDetails>
         },
         {
           path: 'myreview/update/:id',
-          loader: ({ params }) => fetch(`https://70-assignment-server.vercel.app/review/${params.id}`),
+          loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`),
           element: <Update></Update>
         }
       ]

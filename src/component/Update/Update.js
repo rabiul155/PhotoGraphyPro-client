@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 
 const Update = () => {
@@ -10,21 +11,29 @@ const Update = () => {
         const form = event.target;
         const reviewUpdate = form.review.value;
         console.log(reviewUpdate);
+        const message = {
+            reviewUpdate
+        }
 
 
 
-        fetch(`https://70-assignment-server.vercel.app/reviews/${review?._id}`, {
+        fetch(`http://localhost:5000/reviews/${review?._id}`, {
 
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
 
-            body: JSON.stringify(reviewUpdate),
+            body: JSON.stringify(message),
 
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+
+                console.log(data)
+                toast.success('review updated')
+                form.reset();
+            })
 
 
     }

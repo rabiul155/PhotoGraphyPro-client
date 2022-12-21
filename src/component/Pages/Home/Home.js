@@ -24,7 +24,7 @@ const Home = () => {
     useTitle('Home')
 
     useEffect(() => {
-        fetch('https://70-assignment-server.vercel.app/home-services')
+        fetch('http://localhost:5000/home-services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -92,8 +92,8 @@ const Home = () => {
                                 spaceBetween: 20,
                             },
                             768: {
-                                slidesPerView: 4,
-                                spaceBetween: 30,
+                                slidesPerView: 3,
+                                spaceBetween: 20,
                             }
                         }}
 

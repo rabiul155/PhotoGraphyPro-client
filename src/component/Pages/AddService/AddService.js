@@ -28,7 +28,7 @@ const AddService = () => {
         }
         console.log(service);
 
-        fetch('https://70-assignment-server.vercel.app/services', {
+        fetch('http://localhost:5000/services', {
 
             method: 'POST',
 
