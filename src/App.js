@@ -11,6 +11,8 @@ import Services from './component/Pages/Services/Services';
 import SignUp from './component/Pages/SignUp/SignUp';
 import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 import Update from './component/Update/Update';
+import Dashbord from './layout/Dashbord';
+
 import Main from './layout/Main';
 
 function App() {
@@ -29,11 +31,7 @@ function App() {
           element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
 
         },
-        {
-          path: '/addservice',
-          element: <PrivateRoute><AddService></AddService></PrivateRoute>
 
-        },
         {
           path: '/blogs',
           element: <Blogs></Blogs>
@@ -50,7 +48,6 @@ function App() {
         },
         {
           path: '/services',
-          loader: () => fetch('https://70-assignment-server.vercel.app/services'),
           element: <Services></Services>
         },
         {
@@ -65,6 +62,17 @@ function App() {
           loader: ({ params }) => fetch(`https://70-assignment-server.vercel.app/review/${params.id}`),
           element: <Update></Update>
         }
+      ]
+    },
+    {
+      path: "/dashbord",
+      element: <Dashbord></Dashbord>,
+      children: [
+        {
+          path: 'dashbord/addservice',
+          element: <PrivateRoute><AddService></AddService></PrivateRoute>
+
+        },
       ]
     }
   ])

@@ -1,18 +1,47 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../context/UserContext';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import toast from 'react-hot-toast';
+import { useQuery } from 'react-query';
+import { HiStar } from "react-icons/hi";
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+
+
 
 
 const ServiceDetails = () => {
 
     const { user } = useContext(AuthContext);
 
-    const [reviews, setReviews] = useState([])
-
     const service = useLoaderData();
+    const [booking, setBooking] = useState(null)
+    const [startDate, setStartDate] = useState(null);
+
+
+
     const { _id, name, picture, rating, price, about } = service;
+
+    let countStar = [];
+
+    for (let i = 1; i <= parseInt(rating); i++) {
+        countStar.push(i)
+
+    }
+
+
+
+    const { data: reviews = [], refetch } = useQuery({
+        queryKey: ['reviews'],
+        queryFn: async () => {
+            const res = await fetch(`https://70-assignment-server.vercel.app/reviews?review_id=${_id}`)
+            const data = await res.json()
+            return data;
+        }
+    })
 
 
     const handleSubmit = (event) => {
@@ -32,9 +61,6 @@ const ServiceDetails = () => {
             service_name: name
         }
 
-
-        console.log(review);
-
         fetch('https://70-assignment-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
@@ -46,16 +72,13 @@ const ServiceDetails = () => {
             .then(data => {
                 console.log(data)
                 toast.success('review added')
+                refetch();
             })
             .catch(error => console.error('add review data error', error))
 
     }
 
-    useEffect(() => {
-        fetch(`https://70-assignment-server.vercel.app/reviews?review_id=${_id}`)
-            .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [_id])
+
 
 
     return (
@@ -67,13 +90,67 @@ const ServiceDetails = () => {
                     <div className="card-body">
                         <h2 className="card-title">{name}</h2>
                         <p className=' text-lg'>{about}</p>
-                        <div className="card-actions justify-between  p-1">
-                            <h3 className=' text-xl font-bold pt-2'>Price : {price}$</h3>
-                            <h3 className=' text-xl font-bold pt-2'>Rating: {rating} Star</h3>
+                        <div className="lg:flex justify-between items-end">
+                            <div className='flex lg:block justify-between mb-3 lg:mb-0'>
+                                <h3 className=' text-xl font-bold mr-2 '>Price : {price}$</h3>
+                                <h3 className=' text-xl font-bold '>Rating :
+                                    {
+                                        countStar.map(star => <HiStar size={28} className=' inline-block text-yellow-400' key={star}></HiStar>)
+                                    }
+                                </h3>
+                            </div>
+                            <div>
+                                <label onClick={() => setBooking(service)} htmlFor="my-modal" className='btn btn-primary  w-full lg:w-44'>Booking</label>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            {/* modal section  */}
+
+            {
+                booking &&
+                <div>
+                    <input type="checkbox" id="my-modal" className="modal-toggle" />
+                    <div className="modal ">
+                        <div className="modal-box relative ">
+                            <label onClick={() => setBooking(null)} htmlFor="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <h2 className='text-3xl font-bold text-center text-green-600'>Confirmation Form</h2>
+                            <div className="form-control w-full">
+                                <label className="label">Service Name</label>
+                                <input defaultValue={name} type="text" className="input input-primary input-bordered w-full " />
+                            </div>
+                            <div className="form-control w-full">
+                                <label className="label">Service Price</label>
+                                <input defaultValue={price} type="text" className="input input-primary input-bordered w-full " />
+                            </div>
+                            <div className="form-control w-full">
+                                <label className="label">Your Location</label>
+                                <input required type="text" className="input input-primary input-bordered w-full " />
+                            </div >
+                            <div className="form-control w-full">
+                                <label className="label">Booking Date</label>
+                                <DatePicker required
+                                    className='w-full block h-12 text-gray-900 input-primary border border-primary rounded-lg px-3'
+                                    showIcon
+                                    minDate={new Date()}
+                                    selected={startDate}
+                                    dateFormat="dd/MM/yyyy"
+                                    onChange={(date) => setStartDate(date)}
+                                />
+                            </div >
+                            <div className="form-control w-full">
+                                <label className="label">Your Phone Number</label>
+                                <input required type="text" className="input input-primary input-bordered w-full " />
+                            </div>
+                            <button className='btn btn-primary w-full my-5'>Confirm Booking</button>
+                        </div>
+                    </div>
+                </div>
+            }
 
             {/* review section  */}
 
@@ -83,6 +160,7 @@ const ServiceDetails = () => {
 
 
                     {
+
                         reviews.map(review => <ReviewCard
                             key={_id}
                             reviewItem={review}

@@ -7,6 +7,8 @@ import UserContext from './context/UserContext';
 import { Toaster } from 'react-hot-toast';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { QueryClient, QueryClientProvider } from 'react-query';
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +19,9 @@ root.render(
       reverseOrder={false}
     />
     <PhotoProvider>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </PhotoProvider>
 
   </UserContext>

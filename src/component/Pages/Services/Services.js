@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../../Loading/Loading';
 import ServiceCard from '../Shared/ServiceCard/ServiceCard';
 
 const Services = () => {
-    const services = useLoaderData();
-
-    const [spnning, setSpnning] = useState(true)
 
 
-    useEffect(() => {
-        if (services.length > 0) {
-            setSpnning(false);
+    const { data: services = [], isLoading } = useQuery({
+        queryKey: ['services'],
+        queryFn: async () => {
+            const res = await fetch('https://70-assignment-server.vercel.app/services')
+            const data = await res.json()
+            return data;
         }
+    })
 
-    }, [services])
+    if (isLoading) {
+        return <Loading ></Loading>
+    }
 
 
 
     return (
 
         <div>
-
-            {
-                spnning && <div className=' flex justify-center p-4'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div>
-
-            }
-
 
             <div className=' flex justify-center'>
                 <div className=' grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 p-3 gap-5'>
@@ -38,10 +36,6 @@ const Services = () => {
                     }
                 </div>
             </div>
-
-
-
-
 
         </div>
 

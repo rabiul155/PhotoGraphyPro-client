@@ -1,29 +1,36 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useQuery } from 'react-query';
 import { AuthContext } from '../../../context/UserContext';
 import useTitle from '../../../hooks/useTitle';
+import Loading from '../../Loading/Loading';
 import ReviewDetails from './ReviewDetails/ReviewDetails';
 
 const MyReview = () => {
     const { user } = useContext(AuthContext);
+
     const [review, setReview] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     useTitle('MyReview')
 
 
     useEffect(() => {
+        setIsLoading(true)
         fetch(`https://70-assignment-server.vercel.app/reviews/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setReview(data)
-                console.log(data)
+                setIsLoading(false)
+
             })
     }, [user?.email])
+
 
 
     const handleDelete = (_id) => {
         const agree = window.confirm('are you sure to delete this review')
         if (agree) {
-            console.log(_id)
+
             fetch(`https://70-assignment-server.vercel.app/reviews/${_id}`, {
                 method: "DELETE"
             })
@@ -31,12 +38,16 @@ const MyReview = () => {
                 .then(data => {
                     const remaining = review.filter(rev => rev._id !== _id)
                     setReview(remaining);
-                    console.log(data)
                     toast.success('delete successfully')
+
 
                 })
         }
 
+    }
+
+    if (isLoading) {
+        return <Loading></Loading>
     }
 
     return (

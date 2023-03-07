@@ -76,7 +76,7 @@ const Home = () => {
             <div className=' py-5 justify-center '>
                 <h2 className=' text-4xl font-bold text-center p-6'>My work</h2>
 
-                <div className='px-4 py-4 justify-center bg-slate-900 text-white'>
+                <div className='px-4 py-4 justify-center bg-slate-700 text-white'>
                     <Swiper
                         freeMode={true}
                         grabCursor={true}
@@ -93,7 +93,7 @@ const Home = () => {
                             },
                             768: {
                                 slidesPerView: 3,
-                                spaceBetween: 20,
+                                spaceBetween: 10,
                             }
                         }}
 
