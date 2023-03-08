@@ -1,8 +1,12 @@
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+import AdminRoute from './component/AdminRoute/AdminRoute';
 import AddService from './component/Pages/AddService/AddService';
 import Blogs from './component/Pages/Blogs/Blogs';
+import Booking from './component/Pages/Booking/Booking';
+import CustomerOrder from './component/Pages/CustomerOrder/CustomerOrder';
+import Error from './component/Pages/Error/Error';
 import Home from './component/Pages/Home/Home';
 import LogIn from './component/Pages/LogIn/LogIn';
 import MyReview from './component/Pages/MyReview/MyReview';
@@ -21,6 +25,7 @@ function App() {
     {
       path: '/',
       element: <Main></Main>,
+      errorElement: <Error></Error>,
       children: [
         {
           path: '/',
@@ -33,8 +38,8 @@ function App() {
         },
 
         {
-          path: '/blogs',
-          element: <Blogs></Blogs>
+          path: '/booking',
+          element: <Booking></Booking>
 
         },
 
@@ -53,32 +58,37 @@ function App() {
         {
           path: '/services/:id',
           loader: ({ params }) => {
-            return fetch(`https://70-assignment-server.vercel.app/services/${params.id}`)
+            return fetch(`http://localhost:5000/services/${params.id}`)
           },
           element: <ServiceDetails></ServiceDetails>
         },
         {
           path: 'myreview/update/:id',
-          loader: ({ params }) => fetch(`https://70-assignment-server.vercel.app/review/${params.id}`),
+          loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`),
           element: <Update></Update>
         }
       ]
     },
     {
       path: "/dashbord",
-      element: <Dashbord></Dashbord>,
+      element: <AdminRoute><Dashbord></Dashbord></AdminRoute>,
+      errorElement: <Error></Error>,
       children: [
         {
           path: 'dashbord/addservice',
           element: <PrivateRoute><AddService></AddService></PrivateRoute>
 
         },
+        {
+          path: 'dashbord/customerOrder',
+          element: <CustomerOrder></CustomerOrder>
+        }
       ]
     }
   ])
 
   return (
-    <div>
+    <div className=' max-w-screen-xl mx-auto'>
 
       <RouterProvider router={router}>
 

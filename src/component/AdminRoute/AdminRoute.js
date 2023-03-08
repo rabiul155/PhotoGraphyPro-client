@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 import Loading from '../Loading/Loading';
 
-const PrivateRoute = ({ children }) => {
-    const location = useLocation()
+const AdminRoute = ({ children }) => {
 
     const { user, loading } = useContext(AuthContext);
 
@@ -12,10 +11,10 @@ const PrivateRoute = ({ children }) => {
         return <Loading></Loading>
     }
 
-    if (!user) {
-        return <Navigate to="/login" state={{ from: location }} replace></Navigate>
+    if (user.email !== 'admin@gmail.com') {
+        return <Navigate to="/404" ></Navigate>
     }
     return children;
 };
 
-export default PrivateRoute;
+export default AdminRoute;

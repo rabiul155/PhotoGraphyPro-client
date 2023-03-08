@@ -28,7 +28,7 @@ const AddService = () => {
         }
         console.log(service);
 
-        fetch('https://70-assignment-server.vercel.app/services', {
+        fetch('http://localhost:5000/services', {
 
             method: 'POST',
 
@@ -40,7 +40,7 @@ const AddService = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                form.reset();
                 toast.success('successfully added service')
             })
             .catch(error => console.error('service added error ', error))

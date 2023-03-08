@@ -24,7 +24,7 @@ const Home = () => {
     useTitle('Home')
 
     useEffect(() => {
-        fetch('https://70-assignment-server.vercel.app/home-services')
+        fetch('http://localhost:5000/home-services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

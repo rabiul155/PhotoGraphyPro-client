@@ -29,39 +29,81 @@ const ServiceDetails = () => {
 
     for (let i = 1; i <= parseInt(rating); i++) {
         countStar.push(i)
+    }
+
+    // Sent booking information to server 
+
+    const handleConfirmBooking = event => {
+        event.preventDefault();
+        const form = event.target;
+        const serviceImg = picture;
+        const serviceName = name;
+        const servicePrice = price;
+        const serviceId = _id;
+        const consumerImg = user?.photoURL;
+        const consumerName = user?.displayName;
+        const consumerEmail = user?.email;
+        const status = "In progress";
+        const bookingDate = startDate.toLocaleDateString();
+        const location = form.location.value;
+        const phone = form.phone.value;
+
+        const bookingBox = {
+            serviceImg, serviceName, servicePrice, serviceId, consumerEmail, consumerImg, consumerName, status, bookingDate, location, phone
+        }
+        fetch('http://localhost:5000/booking', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookingBox)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data?.message) {
+                    toast.error(data.message)
+                }
+                else if (data?.acknowledged) {
+                    toast.success("Booking confirm")
+                }
+
+            })
+        setBooking(null)
 
     }
 
 
 
+    // Get reviews from server 
     const { data: reviews = [], refetch } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const res = await fetch(`https://70-assignment-server.vercel.app/reviews?review_id=${_id}`)
+            const res = await fetch(`http://localhost:5000/reviews?review_id=${_id}`)
             const data = await res.json()
             return data;
         }
     })
 
-
+    // Send review to server 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
         const userName = form.name.value;
-        const photo = form.photo.value;
-        const email = form.email.value;
+
+        const email = user?.email;
         const reviewText = form.review.value;
 
         const review = {
+            userImg: user.photoURL,
             name: userName,
-            picture: photo,
+            picture: picture,
             email: email,
             review_id: _id,
             review: reviewText,
             service_name: name
         }
 
-        fetch('https://70-assignment-server.vercel.app/reviews', {
+        fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -70,12 +112,22 @@ const ServiceDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                form.reset()
                 toast.success('review added')
                 refetch();
             })
             .catch(error => console.error('add review data error', error))
 
+    }
+
+    const handleBooking = () => {
+        if (user?.uid) {
+            setBooking(service)
+
+        }
+        else {
+            toast.success('Please Login first')
+        }
     }
 
 
@@ -88,7 +140,7 @@ const ServiceDetails = () => {
                 <div className="card card-compact md:w-1/2 bg-base-100 shadow-xl">
                     <figure><img className=' w-full' src={picture} alt="none" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">{name}</h2>
+                        <h2 className="card-title uppercase">{name}</h2>
                         <p className=' text-lg'>{about}</p>
                         <div className="lg:flex justify-between items-end">
                             <div className='flex lg:block justify-between mb-3 lg:mb-0'>
@@ -100,7 +152,7 @@ const ServiceDetails = () => {
                                 </h3>
                             </div>
                             <div>
-                                <label onClick={() => setBooking(service)} htmlFor="my-modal" className='btn btn-primary  w-full lg:w-44'>Booking</label>
+                                <label onClick={handleBooking} htmlFor="my-modal" className='btn btn-primary  w-full lg:w-44'>Booking</label>
 
                             </div>
                         </div>
@@ -113,8 +165,8 @@ const ServiceDetails = () => {
 
             {
                 booking &&
-                <div>
-                    <input type="checkbox" id="my-modal" className="modal-toggle" />
+                <form onSubmit={handleConfirmBooking}>
+                    <input type="checkbox" id="my-modal" className="modal-toggle " />
                     <div className="modal ">
                         <div className="modal-box relative ">
                             <label onClick={() => setBooking(null)} htmlFor="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
@@ -128,10 +180,6 @@ const ServiceDetails = () => {
                                 <input defaultValue={price} type="text" className="input input-primary input-bordered w-full " />
                             </div>
                             <div className="form-control w-full">
-                                <label className="label">Your Location</label>
-                                <input required type="text" className="input input-primary input-bordered w-full " />
-                            </div >
-                            <div className="form-control w-full">
                                 <label className="label">Booking Date</label>
                                 <DatePicker required
                                     className='w-full block h-12 text-gray-900 input-primary border border-primary rounded-lg px-3'
@@ -142,14 +190,17 @@ const ServiceDetails = () => {
                                     onChange={(date) => setStartDate(date)}
                                 />
                             </div >
-                            <div className="form-control w-full">
-                                <label className="label">Your Phone Number</label>
-                                <input required type="text" className="input input-primary input-bordered w-full " />
+                            <div className="form-control my-3 w-full">
+                                <input name='location' required placeholder='Enter your location here' type="text" className="input input-primary input-bordered w-full " />
+                            </div >
+
+                            <div className="form-control my-3 w-full">
+                                <input name='phone' placeholder='Enter your phone number here' required type="text" className="input input-primary input-bordered w-full " />
                             </div>
-                            <button className='btn btn-primary w-full my-5'>Confirm Booking</button>
+                            <button type='submit' className='btn btn-primary w-full '>Confirm Booking</button>
                         </div>
                     </div>
-                </div>
+                </form>
             }
 
             {/* review section  */}
@@ -162,7 +213,7 @@ const ServiceDetails = () => {
                     {
 
                         reviews.map(review => <ReviewCard
-                            key={_id}
+                            key={review._id}
                             reviewItem={review}
                         ></ReviewCard>)
                     }
@@ -183,27 +234,6 @@ const ServiceDetails = () => {
                         <h2 className=' text-center text-4xl font-bold pt-5 '>ADD A REVIEW FOR THIS SERVICE</h2>
                         <form onSubmit={handleSubmit} >
                             <div className=' grid grid-cols-1 sm:grid-cols-2 gap-4  p-4'>
-                                <div >
-                                    <label className="label">
-                                        <span className="label-text text-lg font-semibold">Reviewer Name</span>
-
-                                    </label>
-                                    <input defaultValue={user?.displayName} name='name' type="text" placeholder="Service Name" className="input border border-sky-500 rounded w-full " required />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text text-lg font-semibold ">Reviewer Photo URL</span>
-
-                                    </label>
-                                    <input defaultValue={user?.photoURL} name='photo' type="text" placeholder="Photo URL" className="input border border-sky-500 rounded w-full " required />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text text-lg font-semibold">Reviewer Email</span>
-
-                                    </label>
-                                    <input defaultValue={user?.email} name='email' type="text" placeholder="Service Price" className="input border border-sky-500 rounded w-full " required />
-                                </div>
                                 <div>
                                     <label className="label">
                                         <span className="label-text text-lg font-semibold">Service To Review</span>
@@ -211,6 +241,14 @@ const ServiceDetails = () => {
                                     </label>
                                     <input defaultValue={name} name='service-id' type="text" placeholder="Service Rating" className="input border border-sky-500 rounded w-full " required />
                                 </div>
+                                <div >
+                                    <label className="label">
+                                        <span className="label-text text-lg font-semibold">Reviewer Name</span>
+
+                                    </label>
+                                    <input defaultValue={user?.displayName} name='name' type="text" placeholder="Service Name" className="input border border-sky-500 rounded w-full " required />
+                                </div>
+
                             </div>
 
                             <div className=' px-4'>

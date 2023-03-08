@@ -14,7 +14,7 @@ const ServiceCard = ({ service }) => {
                     </PhotoView>
                 </figure>
                 <div className="card-body">
-                    <h2 className="card-title">{name}</h2>
+                    <h2 className="card-title uppercase">{name}</h2>
                     <p className=' text-lg'>{about.slice(0, 100)}</p>
                     <div className="card-actions justify-between pt-1">
                         <h3 className=' text-xl font-bold pt-2'>Price :{price}$</h3>
