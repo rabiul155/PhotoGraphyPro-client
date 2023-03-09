@@ -18,6 +18,8 @@ import pro from '../../../images/pro.jpg'
 import useTitle from '../../../hooks/useTitle';
 import Email from '../../Email/Email';
 import { HashLink } from 'react-router-hash-link';
+import BottomBanner from './BotomBanner/BottomBanner';
+import OurSevices from './OurServices/OurSevices';
 
 
 const Home = () => {
@@ -125,6 +127,15 @@ const Home = () => {
 
                 </div>
             </div>
+
+            {/* our services section  */}
+
+            <OurSevices></OurSevices>
+
+            {/* bottom banner section */}
+
+
+            <BottomBanner></BottomBanner>
 
 
             {/* Email js section  */}
