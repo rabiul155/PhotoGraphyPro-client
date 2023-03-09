@@ -16,6 +16,8 @@ import ServiceCard from '../Shared/ServiceCard/ServiceCard';
 import { Link } from 'react-router-dom';
 import pro from '../../../images/pro.jpg'
 import useTitle from '../../../hooks/useTitle';
+import Email from '../../Email/Email';
+import { HashLink } from 'react-router-hash-link';
 
 
 const Home = () => {
@@ -46,7 +48,7 @@ const Home = () => {
 
                         <p className=' sm:text-lg mt-3'>Looking for professional photographers to work with? <br /> You came to the right place. On Fiverr, you can easily <br /> find top photographers for any job necessary</p>
                         <div className=' mt-3'>
-                            <button className="btn w-32  btn-active btn-accent text-white mr-6">Hire Me</button>
+                            <HashLink smooth to="#contuctMe">    <button className="btn w-32  btn-active btn-accent text-white mr-6">Contuct Me</button></HashLink>
                             <button className="btn btn-outline btn-warning">Pre Booking</button>
                         </div>
                     </div>
@@ -123,6 +125,11 @@ const Home = () => {
 
                 </div>
             </div>
+
+
+            {/* Email js section  */}
+
+            <Email></Email>
 
             {/* about Me section  */}
 
