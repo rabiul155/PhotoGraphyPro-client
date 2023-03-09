@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import UserContext from './context/UserContext';
 import { Toaster } from 'react-hot-toast';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { PhotoProvider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient()

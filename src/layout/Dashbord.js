@@ -17,8 +17,8 @@ const Dashbord = () => {
                     <ul className="menu p-4 w-64 bg-base-200 text-base-content">
 
                         <li><Link to='dashbord/addservice' className=' font-bold'>Add Service</Link></li>
-
                         <li><Link to='dashbord/customerOrder' className=' font-bold'>Customer Order</Link></li>
+                        <li><Link to='dashbord/myServices' className=' font-bold'>My Services</Link></li>
 
                     </ul>
 

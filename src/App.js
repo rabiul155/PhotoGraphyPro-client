@@ -10,6 +10,7 @@ import Error from './component/Pages/Error/Error';
 import Home from './component/Pages/Home/Home';
 import LogIn from './component/Pages/LogIn/LogIn';
 import MyReview from './component/Pages/MyReview/MyReview';
+import MyServices from './component/Pages/MyServices/MyServices';
 import ServiceDetails from './component/Pages/ServiceDetails/ServiceDetails';
 import Services from './component/Pages/Services/Services';
 import SignUp from './component/Pages/SignUp/SignUp';
@@ -39,7 +40,7 @@ function App() {
 
         {
           path: '/booking',
-          element: <Booking></Booking>
+          element: <PrivateRoute><Booking></Booking></PrivateRoute>
 
         },
 
@@ -65,7 +66,7 @@ function App() {
         {
           path: 'myreview/update/:id',
           loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`),
-          element: <Update></Update>
+          element: <PrivateRoute><Update></Update></PrivateRoute>
         }
       ]
     },
@@ -76,12 +77,16 @@ function App() {
       children: [
         {
           path: 'dashbord/addservice',
-          element: <PrivateRoute><AddService></AddService></PrivateRoute>
+          element: <AdminRoute><AddService></AddService></AdminRoute>
 
         },
         {
           path: 'dashbord/customerOrder',
-          element: <CustomerOrder></CustomerOrder>
+          element: <AdminRoute><CustomerOrder></CustomerOrder></AdminRoute>
+        },
+        {
+          path: 'dashbord/myServices',
+          element: <AdminRoute><MyServices></MyServices></AdminRoute>
         }
       ]
     }

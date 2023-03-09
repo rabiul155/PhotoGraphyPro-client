@@ -68,7 +68,7 @@ const UserContext = ({ children }) => {
 
 
 
-    const propsInfo = { user, createUser, createUserGoogle, logOut, logIn, updateUser };
+    const propsInfo = { user, createUser, createUserGoogle, logOut, logIn, updateUser, loading };
     return (
         <AuthContext.Provider value={propsInfo}>
             {children}

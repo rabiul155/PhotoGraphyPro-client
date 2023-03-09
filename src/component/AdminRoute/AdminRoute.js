@@ -11,7 +11,7 @@ const AdminRoute = ({ children }) => {
         return <Loading></Loading>
     }
 
-    if (user.email !== 'admin@gmail.com') {
+    else if (user?.email !== 'admin@gmail.com') {
         return <Navigate to="/404" ></Navigate>
     }
     return children;
