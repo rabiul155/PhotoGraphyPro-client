@@ -20,6 +20,7 @@ import Email from '../../Email/Email';
 import { HashLink } from 'react-router-hash-link';
 import BottomBanner from './BotomBanner/BottomBanner';
 import OurSevices from './OurServices/OurSevices';
+import Gallery from './Gallery/Gallery';
 
 
 const Home = () => {
@@ -59,8 +60,8 @@ const Home = () => {
 
             {/* .................services section .............. */}
 
-            <div className=' flex justify-center pt-6'>
-                <div className=' grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-5'>
+            <div className='my-6'>
+                <div className=' grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3'>
                     {
                         services.map(service => <ServiceCard
                             key={service._id}
@@ -74,11 +75,15 @@ const Home = () => {
                 <Link to='/services' className="btn btn-active btn-warning px-12">SEE ALL</Link>
             </div>
 
+            {/* gallery section  */}
+
+            <Gallery></Gallery>
+
             {/*............ my work section ............. */}
 
 
             <div className=' py-5 justify-center '>
-                <h2 className=' text-4xl font-bold text-center p-6'>My work</h2>
+                <h2 className=' text-4xl font-bold text-center p-6 text-purple-600 uppercase'>recent work</h2>
 
                 <div className='px-4 py-4 justify-center bg-slate-700 text-white'>
                     <Swiper

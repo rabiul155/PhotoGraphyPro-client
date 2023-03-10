@@ -6,8 +6,8 @@ const ServiceCard = ({ service }) => {
     console.log(service)
     const { _id, name, picture, price, about } = service;
     return (
-        <div>
-            <div className="card card-compact w-80  sm:mx-0 mx-auto sm:w-96 bg-base-100 shadow-xl">
+        <div className='mx-auto'>
+            <div className="card card-compact w-80 rounded-lg  mx-auto  sm:w-[360px] bg-base-100 shadow-xl">
                 <figure>
                     <PhotoView src={picture}>
                         <img className='h-64' src={picture} alt="Shoes" />
