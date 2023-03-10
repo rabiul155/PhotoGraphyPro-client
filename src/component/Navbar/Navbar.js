@@ -92,7 +92,9 @@ const Navbar = () => {
                             <>
                                 <Link className=' font-bold mx-3' to='/login' >LogIn</Link>
                                 <Link className=' font-bold mx-4' to='/signup' >SignUp</Link>
-                                <Link htmlFor="dashbord" className="mr-4  lg:hidden"><HiMenu className='pt-1' size={25}></HiMenu></Link>
+                                {
+                                    user?.email === 'admin@gmail.com' && <Link htmlFor="dashbord" className="mr-4  lg:hidden"><HiMenu className='pt-1' size={25}></HiMenu></Link>
+                                }
                             </>
                     }
                 </div>

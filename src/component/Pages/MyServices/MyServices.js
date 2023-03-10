@@ -7,7 +7,7 @@ const MyServices = () => {
     const { data: services = [], isLoading, refetch } = useQuery({
         queryKey: ['services'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/services`)
+            const res = await fetch(`https://70-assignment-server.vercel.app/services`)
             const data = await res.json();
             return data
         }
@@ -20,7 +20,7 @@ const MyServices = () => {
     const handleDelete = (id) => {
         const confirm = window.confirm('Are you sure to delete this service')
         if (confirm) {
-            fetch(`http://localhost:5000/deleteService/${id}`, {
+            fetch(`https://70-assignment-server.vercel.app/deleteService/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -61,7 +61,7 @@ const MyServices = () => {
                                     </div>
                                 </td>
                                 <td>{service.name}</td>
-                                <td>{service.price}$</td>
+                                <td>{service.price} BDT</td>
                                 <td className=''>{service.rating}</td>
                                 <td><button onClick={() => handleDelete(service._id)} className='btn btn-sm'>Delete</button></td>
                             </tr>)

@@ -51,7 +51,7 @@ const ServiceDetails = () => {
         const bookingBox = {
             serviceImg, serviceName, servicePrice, serviceId, consumerEmail, consumerImg, consumerName, status, bookingDate, location, phone
         }
-        fetch('http://localhost:5000/booking', {
+        fetch('https://70-assignment-server.vercel.app/booking', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -78,7 +78,7 @@ const ServiceDetails = () => {
     const { data: reviews = [], refetch } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/reviews?review_id=${_id}`)
+            const res = await fetch(`https://70-assignment-server.vercel.app/reviews?review_id=${_id}`)
             const data = await res.json()
             return data;
         }
@@ -103,7 +103,7 @@ const ServiceDetails = () => {
             service_name: name
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://70-assignment-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -144,7 +144,7 @@ const ServiceDetails = () => {
                         <p className=' text-lg'>{about}</p>
                         <div className="lg:flex justify-between items-end">
                             <div className='flex lg:block justify-between mb-3 lg:mb-0'>
-                                <h3 className=' text-xl font-bold mr-2 '>Price : {price}$</h3>
+                                <h3 className=' text-xl font-bold mr-2 '>Price : {price} BDT</h3>
                                 <h3 className=' text-xl font-bold '>Rating :
                                     {
                                         countStar.map(star => <HiStar size={28} className=' inline-block text-yellow-400' key={star}></HiStar>)
@@ -205,24 +205,20 @@ const ServiceDetails = () => {
 
             {/* review section  */}
 
+
             <div className=' px-3 py-3 justify-center '>
-                <h2 className=' text-5xl font-bold text-center p-8'>Visitors review</h2>
+
+                <h2 className=' text-4xl font-bold text-center p-8 uppercase'>Visitors review</h2>
+
                 <div className=' flex flex-wrap justify-center gap-4'>
-
-
                     {
-
                         reviews.map(review => <ReviewCard
                             key={review._id}
                             reviewItem={review}
                         ></ReviewCard>)
                     }
-
-
                 </div>
-
             </div>
-
 
 
             {/* add review section */}

@@ -17,7 +17,7 @@ const ServiceCard = ({ service }) => {
                     <h2 className="card-title uppercase">{name}</h2>
                     <p className=' text-lg'>{about.slice(0, 100)}</p>
                     <div className="card-actions justify-between pt-1">
-                        <h3 className=' text-xl font-bold pt-2'>Price :{price}$</h3>
+                        <h3 className=' text-xl font-bold pt-2'>Price : {price} BDT</h3>
                         < Link to={`/services/${_id}`} className="btn btn-secondary">View Details</Link>
                     </div>
                 </div>

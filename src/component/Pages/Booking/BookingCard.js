@@ -8,7 +8,7 @@ const BookingCard = ({ service, refetch }) => {
     const handleDelete = (id) => {
         const confirm = window.confirm('Are you sure to delete this service')
         if (confirm) {
-            fetch(`http://localhost:5000/deleteBooking/${id}?date=${bookingDate}`, {
+            fetch(`https://70-assignment-server.vercel.app/deleteBooking/${id}?date=${bookingDate}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -26,7 +26,7 @@ const BookingCard = ({ service, refetch }) => {
                 <img className="w-1/4 object-cover" src={serviceImg} alt="Card" />
                 <div className="w-3/4 p-4">
                     <h2 className="text-gray-900 font-bold text-xl mb-2">ServiceName : {serviceName}</h2>
-                    <h2 className="text-gray-900 font-bold text-xl mb-2">Price : {servicePrice}$</h2>
+                    <h2 className="text-gray-900 font-bold text-xl mb-2">Price : {servicePrice} BDT</h2>
 
                     <div className="flex justify-between mt-3">
                         <div>

@@ -59,13 +59,13 @@ function App() {
         {
           path: '/services/:id',
           loader: ({ params }) => {
-            return fetch(`http://localhost:5000/services/${params.id}`)
+            return fetch(`https://70-assignment-server.vercel.app/services/${params.id}`)
           },
           element: <ServiceDetails></ServiceDetails>
         },
         {
           path: 'myreview/update/:id',
-          loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`),
+          loader: ({ params }) => fetch(`https://70-assignment-server.vercel.app/review/${params.id}`),
           element: <PrivateRoute><Update></Update></PrivateRoute>
         }
       ]

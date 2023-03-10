@@ -62,7 +62,7 @@ const LogIn = () => {
 
     return (
 
-        <div>
+        <div className="relative">
             {
                 spnning ?
 
@@ -119,6 +119,16 @@ const LogIn = () => {
                         </div>
                     </div>
             }
+
+            <div className=" lg:absolute top-3 right-3 m-6">
+                <h2>Credential Info</h2>
+                <p>normarl user accout</p>
+                <p>email : user@gmail.com</p>
+                <p>password : 123456</p>
+                <p>admin accout </p>
+                <p>email : admin@gmail.com</p>
+                <p>password : 123456</p>
+            </div>
         </div>
     );
 };

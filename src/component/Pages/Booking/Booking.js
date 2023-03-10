@@ -12,7 +12,7 @@ const Booking = () => {
     const { data: bookig = [], isLoading, refetch } = useQuery({
         queryKey: ['booking'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myBooking?email=${user?.email}`)
+            const res = await fetch(`https://70-assignment-server.vercel.app/myBooking?email=${user?.email}`)
             const data = await res.json()
             return data;
         }
@@ -61,19 +61,19 @@ const Booking = () => {
                         </div>
                         <div className="flex justify-between">
                             <span>Service Cost</span>
-                            <span>${serviceCost}</span>
+                            <span>{serviceCost} BDT</span>
                         </div>
                     </div>
                     <div className="pt-4 space-y-2">
                         <div className="flex justify-between">
                             <span>Tax fee</span>
-                            <span>${tax}</span>
+                            <span>{tax} BDT</span>
                         </div>
 
                         <div className="space-y-6">
                             <div className="flex justify-between text-lg font-bold">
                                 <span>Total Cost</span>
-                                <span className="">${totalCost}</span>
+                                <span className="">{totalCost} BDT</span>
                             </div>
                             <button type="button" className="w-full py-2 font-semibold border rounded bg-black dark:text-gray-100 dark:border-violet-400">Go to checkout</button>
                         </div>
