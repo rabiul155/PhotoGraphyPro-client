@@ -100,7 +100,8 @@ const ServiceDetails = () => {
             email: email,
             review_id: _id,
             review: reviewText,
-            service_name: name
+            service_name: name,
+            date: new Date().toLocaleDateString()
         }
 
         fetch('https://70-assignment-server.vercel.app/reviews', {

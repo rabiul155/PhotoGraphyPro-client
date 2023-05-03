@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode } from "swiper";
 import 'swiper/css';
-import 'swiper/css/free-mode';
+import "swiper/css/pagination";
+import { Pagination, Autoplay } from "swiper";
 import Swipe from './Swipe/Swipe';
-import img1 from '../../../images/swipe/img1.jpeg';
-import img2 from '../../../images/swipe/img2.jpeg';
-import img3 from '../../../images/swipe/img3.jpeg';
-import img4 from '../../../images/swipe/img4.jpeg';
-import img5 from '../../../images/swipe/img5.webp';
-import img6 from '../../../images/swipe/img6.jpeg';
-import img7 from '../../../images/swipe/img7.jpeg';
 import ServiceCard from '../Shared/ServiceCard/ServiceCard';
 import { Link } from 'react-router-dom';
 import pro from '../../../images/pro.jpg'
@@ -21,7 +14,13 @@ import { HashLink } from 'react-router-hash-link';
 import BottomBanner from './BotomBanner/BottomBanner';
 import OurSevices from './OurServices/OurSevices';
 import Gallery from './Gallery/Gallery';
-
+import img1 from '../../../images/swipe/img1.jpeg';
+import img2 from '../../../images/swipe/img2.jpeg';
+import img3 from '../../../images/swipe/img3.jpeg';
+import img4 from '../../../images/swipe/img4.jpeg';
+import img5 from '../../../images/swipe/img5.webp';
+import img6 from '../../../images/swipe/img6.jpeg';
+import img7 from '../../../images/swipe/img7.jpeg';
 
 const Home = () => {
 
@@ -87,15 +86,18 @@ const Home = () => {
 
                 <div className='px-4 py-4 justify-center bg-slate-700 text-white'>
                     <Swiper
-                        freeMode={true}
-                        grabCursor={true}
-                        modules={[FreeMode]}
+                        speed={1000}
+
+                        autoplay={{
+                            delay: 1500,
+                            disableOnInteraction: false,
+                        }}
+                        modules={[Pagination, Autoplay]}
                         className="mySwiper"
+                        slidesPerView={1}
+                        spaceBetween={10}
                         breakpoints={{
-                            0: {
-                                slidesPerView: 1,
-                                spaceBetween: 10,
-                            },
+
                             480: {
                                 slidesPerView: 2,
                                 spaceBetween: 20,
