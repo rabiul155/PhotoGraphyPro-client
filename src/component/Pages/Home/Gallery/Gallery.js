@@ -20,73 +20,73 @@ const Gallery = () => {
         <div>
             <h2 className='font-bold text-center text-4xl text-purple-600'>PHOTO GALLERY</h2>
             <div className='grid-wrapper p-4'>
-                <div className='tall'>
+                <div className='tall hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img1}>
                         <img src={img1} alt="" />
                     </PhotoView>
 
                 </div>
-                <div >
+                <div className=' hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img2}>
                         <img src={img2} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='tall'>
+                <div className='tall  hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img3}>
                         <img src={img3} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='tall'>
+                <div className='tall  hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img4}>
                         <img src={img4} alt="" />
                     </PhotoView>
 
                 </div>
-                <div >
+                <div className=' hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img5}>
                         <img src={img5} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='big'>
+                <div className='big  hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img6}>
                         <img src={img6} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='wide'>
+                <div className='wide  hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img7} >
                         <img src={img7} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='tall'>
+                <div className='tall  hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img8}>
                         <img src={img8} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='tall'>
+                <div className='tall  hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img9}>
                         <img src={img9} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='big'>
+                <div className='big  hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img10}>
                         <img src={img10} alt="" />
                     </PhotoView>
 
                 </div>
-                <div >
+                <div className=' hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img11}>
                         <img src={img11} alt="" />
                     </PhotoView>
 
                 </div>
-                <div >
+                <div className=' hover:scale-105 duration-300 hover:brightness-50'>
                     <PhotoView src={img12} >
                         <img src={img12} alt="" />
                     </PhotoView>
