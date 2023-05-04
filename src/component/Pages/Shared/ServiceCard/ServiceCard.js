@@ -6,11 +6,11 @@ const ServiceCard = ({ service }) => {
     console.log(service)
     const { _id, name, picture, price, about } = service;
     return (
-        <div className='mx-auto'>
+        <div className='mx-auto hover:shadow-2xl hover:-translate-y-3 duration-300'>
             <div className="card card-compact w-80 rounded-lg  mx-auto  sm:w-[360px] bg-base-100 shadow-xl">
                 <figure>
                     <PhotoView src={picture}>
-                        <img className='h-64' src={picture} alt="Shoes" />
+                        <img className='h-64 hover:scale-105 duration-300' src={picture} alt="Shoes" />
                     </PhotoView>
                 </figure>
                 <div className="card-body">

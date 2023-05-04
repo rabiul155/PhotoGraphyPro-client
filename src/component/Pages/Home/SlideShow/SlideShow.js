@@ -26,7 +26,7 @@ const SlideShow = () => {
                 <div className='px-4 py-4 justify-center bg-slate-700 text-white'>
                     <Swiper
                         speed={1000}
-
+                        grabCursor={true}
                         autoplay={{
                             delay: 1500,
                             disableOnInteraction: false,

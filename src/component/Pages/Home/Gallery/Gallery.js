@@ -20,75 +20,75 @@ const Gallery = () => {
         <div>
             <h2 className='font-bold text-center text-4xl text-purple-600'>PHOTO GALLERY</h2>
             <div className='grid-wrapper p-4'>
-                <div className='tall hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='tall overflow-hidden'>
                     <PhotoView src={img1}>
-                        <img src={img1} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img1} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className=' hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='overflow-hidden'>
                     <PhotoView src={img2}>
-                        <img src={img2} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img2} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='tall  hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='tall overflow-hidden'>
                     <PhotoView src={img3}>
-                        <img src={img3} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img3} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='tall  hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='tall overflow-hidden'>
                     <PhotoView src={img4}>
-                        <img src={img4} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img4} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className=' hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='overflow-hidden'>
                     <PhotoView src={img5}>
-                        <img src={img5} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img5} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='big  hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='big overflow-hidden'>
                     <PhotoView src={img6}>
-                        <img src={img6} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img6} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='wide  hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='wide overflow-hidden'>
                     <PhotoView src={img7} >
-                        <img src={img7} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img7} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='tall  hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='tall overflow-hidden'>
                     <PhotoView src={img8}>
-                        <img src={img8} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img8} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='tall  hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='tall overflow-hidden'>
                     <PhotoView src={img9}>
-                        <img src={img9} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img9} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className='big  hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='big overflow-hidden'>
                     <PhotoView src={img10}>
-                        <img src={img10} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img10} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className=' hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='overflow-hidden'>
                     <PhotoView src={img11}>
-                        <img src={img11} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img11} alt="" />
                     </PhotoView>
 
                 </div>
-                <div className=' hover:scale-105 duration-300 hover:brightness-50'>
+                <div className='overflow-hidden'>
                     <PhotoView src={img12} >
-                        <img src={img12} alt="" />
+                        <img className=' hover:scale-105 duration-300 hover:brightness-50' src={img12} alt="" />
                     </PhotoView>
 
                 </div>
